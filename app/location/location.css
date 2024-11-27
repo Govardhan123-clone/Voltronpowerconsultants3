@@ -1,0 +1,44 @@
+/* /app/location/LocationStyles.css */
+
+.location-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .location-page h1 {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .location-page p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .location-page address {
+    font-style: normal;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .map-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  

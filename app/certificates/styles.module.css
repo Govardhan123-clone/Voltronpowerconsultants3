@@ -1,0 +1,68 @@
+/* app/certificates/styles.module.css */
+
+.container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .title {  /* Add a class to scope the h1 tag */
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .certificatesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .certificateCard {
+    background-color: #e3e9e9ea;
+    border: 1px solid #ddd;
+    border-radius: 100px;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  
+  .certificateCard:hover {
+    transform: scale(1.05);
+  }
+  
+  .certificateImage {
+    width: 90%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .certificateImageLarge {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    margin: 0 auto 20px;
+  }
+  
+  .viewDetails {
+    display: inline-block;
+    margin-top: 10px;
+    color: #0070f3;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .viewDetails:hover {
+    text-decoration: underline;
+  }
+  
+  .detailsContainer {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .detailsContainer img {
+    margin-bottom: 20px;
+  }
+  

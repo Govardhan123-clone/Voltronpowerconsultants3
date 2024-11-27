@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/components/footer.jsx", "app/power-transformer/page.tsx", "app/power-transformer/transformer-megger-test/components/BookingForm", "app/power-transformer/transformer-tan-delta/components/BookingForm", "app/power-transformer/oil-filtration/components/BookingForm"],
+  "exclude": ["node_modules"]
+}
+

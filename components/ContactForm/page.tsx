@@ -1,24 +1,40 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+type FormData = {
+  name: string;
+  email: string;
+  phone: string;
+  agree: boolean;
+};
+
+type ChangeEvent = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
     agree: false,
   });
 
-  const [status, setStatus] = useState('');
-  const [recaptchaToken, setRecaptchaToken] = useState('');
+  const [status, setStatus] = useState<string>('');
 
-  const handleChange = (e: { target: { name: any; value: any; type: any; checked: any; }; }) => {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.grecaptcha) {
+      window.grecaptcha.ready(() => {
+        console.log('reCAPTCHA is ready');
+      });
+    }
+  }, []);
+
+  const handleChange = (e: ChangeEvent) => {
     const { name, value, type, checked } = e.target;
     setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!formData.agree) {
@@ -26,14 +42,12 @@ const ContactForm = () => {
       return;
     }
 
-    const recaptchaToken = await window.grecaptcha.execute(
-      process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
-      { action: 'submit' }
-    );
-
-    setRecaptchaToken(recaptchaToken);
-
     try {
+      const recaptchaToken = await window.grecaptcha.execute(
+        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '',
+        { action: 'submit' }
+      );
+
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -44,7 +58,8 @@ const ContactForm = () => {
         setStatus('Message sent successfully!');
         setFormData({ name: '', email: '', phone: '', agree: false });
       } else {
-        setStatus('Failed to send the message.');
+        const errorData = await response.json();
+        setStatus(errorData.message || 'Failed to send the message.');
       }
     } catch (error) {
       console.error(error);
